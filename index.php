@@ -14,37 +14,58 @@ td{
 <body>
 
 <form method="get">
-<input type="text" name="skaicius"><br>
+E: <input type="text" name="eilutes"><br>
+S: <input type="text" name="stulpeliai"><br>
 <input type="submit" value="Submit"><br>
 </form>
 
 <table>
 <?php
 
-$num="";
+$eil="";
+$stul="";
 
-if (isset($_GET["skaicius"])){
-	$num=$_GET["skaicius"];
+if (isset($_GET["eilutes"])){
+	$eil=$_GET["eilutes"];
+}
+if (isset($_GET["stulpeliai"])){
+	$stul=$_GET["stulpeliai"];
 }
 
-if (is_numeric($num)){
-    lentele((int)$num);
+if (is_numeric($eil) && is_numeric($stul)){
+    lentele((int)$eil,(int)$stul);
 }else {
     echo "Iveskite skaiciu";
 }
 
 
-function lentele($x){
+function lentele($x,$y){
 
     $bgcl="background-color:grey;";
 
     for ($i=0;$i<$x;$i++){
+        if ($i%2==0){
+            echo "<tr>";
+            for ($o=0;$o<$y;$o++){
+             if ($o%2==0){
+             echo "<td>tekstas</td>";
+             }else if($o%2==1){
+             echo "<td style='$bgcl'>tekstas</td>";
+             }
+            }
+            echo "</tr>";
+        }else if($i%2==1){
+            echo "<tr>";
+            for ($o=0;$o<$y;$o++){
+             if ($o%2==0){
+             echo "<td style='$bgcl'>tekstas</td>";
+             }else if($o%2==1){
+             echo "<td>tekstas</td>";
+             }
+            }
+            echo "</tr>";
+        }
 
-    if ($i%2==0){
-        echo "<tr><td>tekstas</td></tr>";
-     }else if ($i%2==1){
-	    echo "<tr><td style='$bgcl'>tekstas</td></tr>";
-    }else echo "Klaida!";
     }
 
 }
