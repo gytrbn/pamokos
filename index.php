@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>kaskelinta pamoka php</title>
+<title>Draw Table</title>
 </head>
 <style>
 table{
@@ -14,62 +14,60 @@ td{
 <body>
 
 <form method="get">
-E: <input type="text" name="eilutes"><br>
-S: <input type="text" name="stulpeliai"><br>
+E: <input type="text" name="lines"><br>
+S: <input type="text" name="columns"><br>
 <input type="submit" value="Submit"><br>
 </form>
 
-<table>
 <?php
 
-$eil="";
-$stul="";
+$line = 0;
+$column = 0;
 
-if (isset($_GET["eilutes"])){
-	$eil=$_GET["eilutes"];
+if (isset($_GET['lines'])){
+	$line = $_GET['lines'];
 }
-if (isset($_GET["stulpeliai"])){
-	$stul=$_GET["stulpeliai"];
+if (isset($_GET['columns'])){
+	$column = $_GET['columns'];
 }
 
-if (is_numeric($eil) && is_numeric($stul)){
-    lentele((int)$eil,(int)$stul);
+if (is_numeric($line) && is_numeric($column)){
+    drawTable((int)$line, (int)$column);
 }else {
     echo "Iveskite skaiciu";
 }
 
 
-function lentele($x,$y){
+function drawTable($tableLines, $tableColumns){
+    $backgroundColor = "background-color:grey;";
 
-    $bgcl="background-color:grey;";
-
-    for ($i=0;$i<$x;$i++){
-        if ($i%2==0){
+    echo "<table>";
+    for ($i = 0; $i < $tableLines; $i++){
+        if ($i%2 == 0){
             echo "<tr>";
-            for ($o=0;$o<$y;$o++){
-             if ($o%2==0){
-             echo "<td>tekstas</td>";
-             }else if($o%2==1){
-             echo "<td style='$bgcl'>tekstas</td>";
+            for ($o = 0; $o < $tableColumns; $o++){
+                if ($o%2 == 0){
+                 echo "<td>tekstas</td>";
+                }else if($o%2 == 1){
+                    echo "<td style='$backgroundColor'>tekstas</td>";
              }
             }
             echo "</tr>";
-        }else if($i%2==1){
+        }else if($i%2 == 1){
             echo "<tr>";
-            for ($o=0;$o<$y;$o++){
-             if ($o%2==0){
-             echo "<td style='$bgcl'>tekstas</td>";
-             }else if($o%2==1){
-             echo "<td>tekstas</td>";
+            for ($o = 0; $o < $tableColumns; $o++){
+                if ($o%2 == 0){
+                    echo "<td style='$backgroundColor'>tekstas</td>";
+                }else if($o%2 == 1){
+                    echo "<td>tekstas</td>";
              }
             }
             echo "</tr>";
         }
 
     }
-
+    echo "</table>";
 }
 ?>
-</table>
 </body>
 </html>
