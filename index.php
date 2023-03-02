@@ -13,16 +13,16 @@ td{
 </style>
 <body>
 
-<form method="get">
-<input type="text" name="number"><br>
-<input type="submit" value="Submit"><br>
+<form method = "get">
+<input type = "text" name = "number"><br>
+<input type = "submit" value = "Submit"><br>
 </form>
 
 <?php
-$num=0;
+$num = 0;
 
 if (isset($_GET['number'])){
-	$num=$_GET['number'];
+	$num = $_GET['number'];
 }
 
 if (is_numeric($num)){
@@ -32,15 +32,15 @@ if (is_numeric($num)){
 }
 
 
-function drawTable($x){
+function drawTable(int $numberOfRows): void {
     echo "<table>";
-    $backgroundColor="background-color:grey;";
+    $backgroundColor = "background-color:grey;";
 
-    for ($i=0;$i<$x;$i++){
-        if ($i%2==0){
+    for ($i = 0; $i < $numberOfRows; $i++){
+        if ($i%2 == 0){
             echo "<tr><td>tekstas</td></tr>";
-        }else if ($i%2==1){
-	        echo "<tr><td style='$backgroundColor'>tekstas</td></tr>";
+        }else if ($i%2 == 1){
+	        echo "<tr><td style = '$backgroundColor'>tekstas</td></tr>";
     }}
     echo "</table>";
 }
