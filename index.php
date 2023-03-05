@@ -21,12 +21,30 @@ if (isset($_GET['search'])){
             echo ucfirst($key)." ";
         }
 
-    }else if(in_array($searchText, $cars['mercedes'])){
+    }else {
+        foreach($cars as $a){
+            foreach ($a as $value){
+                if($searchText == $value){
+                    echo 'RADAU'.$value;
+                   // echo key($a);
+                 /*  $b = array_search($searchText, $a);
+                   echo $b;*/
+                }
+            }
+        }
+    }
+}; 
+    
+    
+    /*
+    if(in_array($searchText, $cars['mercedes'])){
         echo ucfirst($searchText).'<br>';
         echo 'Modelis';
     }else{
         echo 'Nera';
     }
 }
+*/
+
 
 ?>
