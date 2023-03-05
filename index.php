@@ -6,22 +6,26 @@
 <?php
 
 $cars = array(
-    'mercedes' => 's500', 'e280', 'sprinter', 'c63', 'vito', 'ml350',
-    'nissan' => 'figaro', 'navara', 'leaf', 'silvia',
-    'skoda' => 'octavia', 'superb', 'fabia',
-    'volkswagen' => 'passat', 'golf','phaeton', 'touran','polo',
-    'bmw' => '328', '116', '520', '323', '750i');
+    'mercedes' => array('s500', 'e280', 'sprinter', 'c63', 'vito', 'ml350'),
+    'nissan' => array ('figaro', 'navara', 'leaf', 'silvia'),
+    'skoda' => array ('octavia', 'superb', 'fabia'),
+    'volkswagen' => array ('passat', 'golf','phaeton', 'touran','polo'),
+    'bmw' => array ('328', '116', '520', '323', '750i')
+);
 
 if (isset($_GET['search'])){
     $searchText = strtolower($_GET['search']);
     if (array_key_exists($searchText, $cars)){
-        echo 'yra tokia marke<br>';
-        echo $searchText.'<br>';
-    }else if(in_array($searchText, $cars)){
-        echo $searchText.'<br>';
+        echo ucfirst($searchText).'<br>';
+        foreach($cars[$searchText] as $key){
+            echo ucfirst($key)." ";
+        }
+
+    }else if(in_array($searchText, $cars['mercedes'])){
+        echo ucfirst($searchText).'<br>';
         echo 'Modelis';
     }else{
-        echo 'nera';
+        echo 'Nera';
     }
 }
 
