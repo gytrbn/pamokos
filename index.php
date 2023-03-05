@@ -6,19 +6,22 @@
 <?php
 
 $cars = array(
-    array('Mercedes', 'S500', 'E280', 'Sprinter', 'C63', 'Vito', 'ML350'),
-    array('Nissan', 'Figaro', 'Navara', 'Leaf', 'Silvia'),
-    array('Skoda', 'Octavia', 'Superb', 'Fabia'),
-    array('Volkswagen', 'Passat', 'Golf','Phaeton', 'Touran','Polo'),
-    array('BMW', '328', '116', '520', '323', '750i')
-);
+    'mercedes' => 's500', 'e280', 'sprinter', 'c63', 'vito', 'ml350',
+    'nissan' => 'figaro', 'navara', 'leaf', 'silvia',
+    'skoda' => 'octavia', 'superb', 'fabia',
+    'volkswagen' => 'passat', 'golf','phaeton', 'touran','polo',
+    'bmw' => '328', '116', '520', '323', '750i');
 
 if (isset($_GET['search'])){
-    $searchText = $_GET['search'];
+    $searchText = strtolower($_GET['search']);
     if (array_key_exists($searchText, $cars)){
-        echo 'yra toks';
+        echo 'yra tokia marke<br>';
+        echo $searchText.'<br>';
+    }else if(in_array($searchText, $cars)){
+        echo $searchText.'<br>';
+        echo 'Modelis';
     }else{
-        echo 'Nera';
+        echo 'nera';
     }
 }
 
