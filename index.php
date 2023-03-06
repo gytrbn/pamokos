@@ -25,7 +25,7 @@ if(isset($_GET['textInput'])){
 }
 
 if(isset($_GET['outputs'])){
-$option = $_GET['outputs'];
+    $option = $_GET['outputs'];
 }else{
     $option = null;
 }
@@ -89,34 +89,9 @@ switch($option){
         break;
     case 'line':
         drawLines($resultMake, $resultModel, $printOption, $makeArray);
-        /*if ($printOption == 1){
-            echo '<b>'.ucfirst($resultMake).'</b><br>';
-            foreach ($makeArray as $model){
-                echo ucfirst($model).'<br>';
-            }
-        }else if ($printOption == 2){
-            echo '<b>'.ucfirst($resultModel).'</b> yra models, kurio gamintojas yra <b>'.ucfirst($resultMake).'</b>. Kiti gamintojo modeliai yra:<br>';
-            foreach($makeArray as $models){
-                echo ucfirst($models).'<br>';
-                }
-        }*/
         break;
     case 'table':
         drawTables($resultMake, $resultModel, $printOption, $makeArray);
-        /*if ($printOption == 1){
-            echo '<table style = "border: 1px solid black"><tr style = "border: 1px solid black"><td style = "border: 1px solid black">'.ucfirst($resultMake).'</td></tr>';
-            foreach ($makeArray as $model){
-                echo '<td style = "border: 1px solid black; background-color: silver">'.ucfirst($model).'</td></tr>';
-            }
-            echo '</table>';
-        }else if ($printOption == 2){
-            echo '<table style = "border: 1px solid black"><tr style = "border: 1px solid black"><td style = "border: 1px solid black">'
-            .ucfirst($resultModel).'</td></tr><tr style = "border: 1px solid black"><td style = "border: 1px solid black; background-color: silver" >'.ucfirst($resultMake).'</td></tr>';
-            foreach($makeArray as $models){
-                echo '<tr style = "border: 1px solid black"><td style = "border: 1px solid black">'.ucfirst($models).'</td></tr>';
-                }
-            echo '</table>';
-        }*/
         break;
 };
 ?>
