@@ -51,6 +51,36 @@ foreach($cars as $key => $value){
     }
 }
 
+function drawLines ($resultMake, $resultModel, $printOption, $makeArray){
+    if ($printOption == 1){
+        echo '<b>'.ucfirst($resultMake).'</b><br>';
+        foreach ($makeArray as $model){
+            echo ucfirst($model).'<br>';
+        }
+    }else if ($printOption == 2){
+        echo '<b>'.ucfirst($resultModel).'</b> yra models, kurio gamintojas yra <b>'.ucfirst($resultMake).'</b>. Kiti gamintojo modeliai yra:<br>';
+        foreach($makeArray as $models){
+            echo ucfirst($models).'<br>';
+            }
+    }
+};
+
+function drawTables ($resultMake, $resultModel, $printOption, $makeArray){
+    if ($printOption == 1){
+        echo '<table style = "border: 1px solid black"><tr style = "border: 1px solid black"><td style = "border: 1px solid black">'.ucfirst($resultMake).'</td></tr>';
+        foreach ($makeArray as $model){
+            echo '<td style = "border: 1px solid black; background-color: silver">'.ucfirst($model).'</td></tr>';
+        }
+        echo '</table>';
+    }else if ($printOption == 2){
+        echo '<table style = "border: 1px solid black"><tr style = "border: 1px solid black"><td style = "border: 1px solid black">'
+        .ucfirst($resultModel).'</td></tr><tr style = "border: 1px solid black"><td style = "border: 1px solid black; background-color: silver" >'.ucfirst($resultMake).'</td></tr>';
+        foreach($makeArray as $models){
+            echo '<tr style = "border: 1px solid black"><td style = "border: 1px solid black">'.ucfirst($models).'</td></tr>';
+            }
+        echo '</table>';
+    }
+};
 
 switch($option){
     
@@ -58,8 +88,8 @@ switch($option){
         echo ucfirst($searchText);
         break;
     case 'line':
-
-        if ($printOption == 1){
+        drawLines($resultMake, $resultModel, $printOption, $makeArray);
+        /*if ($printOption == 1){
             echo '<b>'.ucfirst($resultMake).'</b><br>';
             foreach ($makeArray as $model){
                 echo ucfirst($model).'<br>';
@@ -69,11 +99,11 @@ switch($option){
             foreach($makeArray as $models){
                 echo ucfirst($models).'<br>';
                 }
-        }
+        }*/
         break;
     case 'table':
-
-        if ($printOption == 1){
+        drawTables($resultMake, $resultModel, $printOption, $makeArray);
+        /*if ($printOption == 1){
             echo '<table style = "border: 1px solid black"><tr style = "border: 1px solid black"><td style = "border: 1px solid black">'.ucfirst($resultMake).'</td></tr>';
             foreach ($makeArray as $model){
                 echo '<td style = "border: 1px solid black; background-color: silver">'.ucfirst($model).'</td></tr>';
@@ -86,7 +116,7 @@ switch($option){
                 echo '<tr style = "border: 1px solid black"><td style = "border: 1px solid black">'.ucfirst($models).'</td></tr>';
                 }
             echo '</table>';
-        }
+        }*/
         break;
 };
 ?>
