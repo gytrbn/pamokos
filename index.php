@@ -11,12 +11,12 @@
 
 <?php
 
-$cars = array(
-    'audi' => array('a2', 'a3', 'a4', 'a5', 'a6'),
-    'volkswagen' => array('golf', 'tiguan', 'sharan', 'passat'),
-    'mercedes' => array('sprinter', 's500', 'e280'),
-    'toyota' => array('corola', 'supra', 'rav4')
-);
+$cars = [
+    'audi' => ['a2', 'a3', 'a4', 'a5', 'a6'],
+    'volkswagen' => ['golf', 'tiguan', 'sharan', 'passat'],
+    'mercedes' => ['sprinter', 's500', 'e280'],
+    'toyota' => ['corola', 'supra', 'rav4']
+];
 
 if(isset($_GET['textInput'])){
     $searchText = strtolower($_GET['textInput']);
@@ -55,7 +55,7 @@ foreach($cars as $key => $value){
 switch($option){
     
     case 'notset':
-        echo $searchText;
+        echo ucfirst($searchText);
         break;
     case 'line':
 
