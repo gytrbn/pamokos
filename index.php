@@ -5,13 +5,13 @@
 
 <?php
 
-$cars = array(
-    'mercedes' => array('s500', 'e280', 'sprinter', 'c63', 'vito', 'ml350'),
-    'nissan' => array ('figaro', 'navara', 'leaf', 'silvia'),
-    'skoda' => array ('octavia', 'superb', 'fabia'),
-    'volkswagen' => array ('passat', 'golf','phaeton', 'touran','polo'),
-    'bmw' => array ('328', '116', '520', '323', '750i')
-);
+$cars = [
+    'mercedes' => ['s500', 'e280', 'sprinter', 'c63', 'vito', 'ml350'],
+    'nissan' => ['figaro', 'navara', 'leaf', 'silvia'],
+    'skoda' => ['octavia', 'superb', 'fabia'],
+    'volkswagen' => ['passat', 'golf','phaeton', 'touran','polo'],
+    'bmw' => ['328', '116', '520', '323', '750i']
+];
 
 if (isset($_GET['search'])){
     $searchText = strtolower($_GET['search']);
@@ -23,10 +23,9 @@ if (isset($_GET['search'])){
 
     }else {
         foreach($cars as $make => $model){
-            foreach ($model as $value){
-                if($searchText == $value){
-                   echo ucfirst($make);
-                }
+            if(in_array($searchText, $model)){
+                echo ucfirst($make);
+                break;
             }
         }
     }
