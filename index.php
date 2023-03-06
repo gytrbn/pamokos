@@ -30,49 +30,63 @@ $option = $_GET['outputs'];
     $option = null;
 }
 
-
-switch($option){
-    case 'notset':
-        echo ucfirst($searchText);
-        break;
-    case 'line':
-        if (array_key_exists($searchText, $cars)){
-            echo '<b>'.ucfirst($searchText).'</b><br>';
-            foreach ($cars[$searchText] as $make){
-                echo ucfirst($make).'<br>';
+if (array_key_exists($searchText, $cars)){
+    $resultMake = $searchText;
+    $resultModel = null;
+    $printOption = 1;
+    foreach ($cars[$searchText] as $make){
+        $makeArray[] = $make;
+    }
+}
+foreach($cars as $key => $value){
+    if (in_array($searchText, $value)){
+        $resultModel = $searchText;
+        $resultMake = $key;
+        $printOption = 2;
+        foreach($value as $models){
+            if ($searchText !== $models){
+                $makeArray[] = $models;
             }
         }
-        foreach($cars as $key => $value){
-            if (in_array($searchText, $value)){
-                echo '<b>'.ucfirst($searchText).'</b> yra models, kurio gamintojas yra <b>'.ucfirst($key).'</b>. Kiti gamintojo modeliai yra:<br>';
-                foreach($value as $models){
-                    if ($searchText !== $models){
-                    echo ucfirst($models).'<br>';
-                    }
-                }
+    }
+}
+
+
+switch($option){
+    
+    case 'notset':
+        echo $searchText;
+        break;
+    case 'line':
+
+        if ($printOption == 1){
+            echo '<b>'.ucfirst($resultMake).'</b><br>';
+            foreach ($makeArray as $model){
+                echo ucfirst($model).'<br>';
             }
+        }else if ($printOption == 2){
+            echo '<b>'.ucfirst($resultModel).'</b> yra models, kurio gamintojas yra <b>'.ucfirst($resultMake).'</b>. Kiti gamintojo modeliai yra:<br>';
+            foreach($makeArray as $models){
+                echo ucfirst($models).'<br>';
+                }
         }
         break;
     case 'table':
-        if (array_key_exists($searchText, $cars)){
-            echo '<table style = "border: 1px solid black"><tr style = "border: 1px solid black"><td style = "border: 1px solid black">'.ucfirst($searchText).'</td></tr>';
-            foreach ($cars[$searchText] as $make){
-                echo '<td style = "border: 1px solid black; background-color: silver">'.ucfirst($make).'</td></tr>';
+
+        if ($printOption == 1){
+            echo '<table style = "border: 1px solid black"><tr style = "border: 1px solid black"><td style = "border: 1px solid black">'.ucfirst($resultMake).'</td></tr>';
+            foreach ($makeArray as $model){
+                echo '<td style = "border: 1px solid black; background-color: silver">'.ucfirst($model).'</td></tr>';
             }
             echo '</table>';
-        }
-        foreach($cars as $key => $value){
-            if (in_array($searchText, $value)){
-                echo '<table style = "border: 1px solid black"><tr style = "border: 1px solid black"><td style = "border: 1px solid black">'
-                .ucfirst($searchText).'</td></tr><tr style = "border: 1px solid black"><td style = "border: 1px solid black; background-color: silver" >'.ucfirst($key).'</td></tr>';
-                foreach($value as $models){
-                    if ($searchText !== $models){
-                    echo '<tr style = "border: 1px solid black"><td style = "border: 1px solid black">'.ucfirst($models).'</td></tr>';
-                    }
+        }else if ($printOption == 2){
+            echo '<table style = "border: 1px solid black"><tr style = "border: 1px solid black"><td style = "border: 1px solid black">'
+            .ucfirst($resultModel).'</td></tr><tr style = "border: 1px solid black"><td style = "border: 1px solid black; background-color: silver" >'.ucfirst($resultMake).'</td></tr>';
+            foreach($makeArray as $models){
+                echo '<tr style = "border: 1px solid black"><td style = "border: 1px solid black">'.ucfirst($models).'</td></tr>';
                 }
-            }
+            echo '</table>';
         }
         break;
-
-}
+};
 ?>
