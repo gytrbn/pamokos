@@ -1,3 +1,5 @@
+<a href = "table.php";>Perziureti markes ir modelius</a><br><hr>
+
 <form method = "post">
 Marke:<input type = "text" name = "make">
 Modelis:<input type = "text" name = "model">
@@ -48,6 +50,8 @@ if (mysqli_num_rows($checkResultMake) == 0){
 }else if (mysqli_num_rows($checkResultModel) == 0){
     newModel($connect, $inputMake, $inputModel);
     echo 'Modelis ivestas i duomenu baze!';
+}else if ($inputMake == null && $inputModel == null){
+    echo 'Iveskite visus duomenis!';
 }else{
     echo 'Toks modelis jau ivestas!';
 };
