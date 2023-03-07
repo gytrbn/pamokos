@@ -13,7 +13,7 @@ $getRezults = "
    SELECT make.make, model.model
    FROM `make`
    LEFT JOIN model on make.id = model.make_id
-   ORDER BY make.id DESC
+   ORDER BY model.id DESC
    LIMIT 10
 ";
 
