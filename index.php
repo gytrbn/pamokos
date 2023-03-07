@@ -43,19 +43,23 @@ $checkResultMake = mysqli_query($connect, $checkMake);
 $checkModel = "SELECT `model` FROM `model` WHERE `model` = '$inputModel'";
 $checkResultModel = mysqli_query($connect, $checkModel);
 
-if ($inputMake == '' && $inputModel == ''){
+
+if ($inputMake == '' || $inputModel == ''){
     echo 'Iveskite visus duomenis!';
-}else if (mysqli_num_rows($checkResultMake) == 0 && $inputMake != '' && $inputModel != ''){
+};
+
+if (mysqli_num_rows($checkResultMake) > 0 && mysqli_num_rows($checkResultModel) > 0){
+    echo 'Tokie duomenys jau ivesti!';
+};
+
+if (mysqli_num_rows($checkResultMake) == 0 && $inputModel != '' && $inputMake != ''){
     newMake($connect, $inputMake);
-    newModel($connect, $inputMake, $inputModel);
-    echo 'Marke ir modelis ivesti i duomenu baze!';
-}else if (mysqli_num_rows($checkResultModel) == 0 && $inputModel != '' && $inputMake != ''){
+    echo 'Marke ivesta i duomenu baze! ';
+};
+
+if (mysqli_num_rows($checkResultModel) == 0 && $inputMake != '' && $inputModel != ''){
     newModel($connect, $inputMake, $inputModel);
     echo 'Modelis ivestas i duomenu baze!';
-}else if ($inputMake == '' || $inputMake == ''){  //klausimas. Kodel man sitas or nesuveikia kai yra ivesta tik marke kurios nera duomenu bazei. 
-    echo 'Truksta duomenu!';                       //palei visa logika turetu sitas suveikti kaip true, bet man vistiek persimeta i paskutini else o ne sita.
-}else{
-    echo 'Toks modelis jau ivestas!';
 };
 
 $connect = null;
