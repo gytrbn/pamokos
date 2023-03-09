@@ -10,27 +10,25 @@ $db = 'cars';
 $connect = new mysqli($server, $name, $pass, $db);
 
 $getRezults = "
-   SELECT make.make, model.model
+   SELECT make.id, make.make, model.id, model.model
    FROM `make`
    LEFT JOIN model on make.id = model.make_id
    ORDER BY model.id DESC
    LIMIT 10
 ";
 
-//$results = mysqli_query($connect, $getRezults);
-//$results = $connect -> query($getRezults);
-
-//print_r($results);
 if($results = $connect -> query($getRezults)){
    echo '<table style = "border: 1px black solid;">';
    while ($resultLine = $results -> fetch_assoc()){
       echo '<tr style = "border: 1px black solid;"><td style = "border: 1px black solid;">'.ucfirst($resultLine['make']).
-      '</td><td style = "border: 1px black solid;">'.ucfirst($resultLine['model']).'</td></tr>';
+      '</td><td style = "border: 1px black solid;"><a href = "view.php?id='.$resultLine['id'].'">'.ucfirst($resultLine['model']).'</a></td></tr>';
+      print_r($resultLine);
    }
    echo '</table>';
 }else{
    echo 'Klaida!';
 };
+
 
 $connect = null;
 ?>
