@@ -63,4 +63,6 @@ if (mysqli_num_rows($checkResultModel) == 0 && $inputMake != '' && $inputModel !
 };
 
 $connect = null;
+
+
 ?>
